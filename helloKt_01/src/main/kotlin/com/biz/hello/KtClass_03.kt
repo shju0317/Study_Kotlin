@@ -34,6 +34,9 @@ fun main(){
     
     var (first, second) = Pair("홍길동", "이몽룡")
     var (f,s,t) = Triple("010",1209, 0718)
+
+    println(StaticClass.ID)
+    println(StaticClass.SECURITY)
 }
 
 class StaticClass{
@@ -41,4 +44,16 @@ class StaticClass{
         var ID = "1234567"
         var SECURITY = "000111000"
     }
+}
+
+class Daum_Config{
+    companion object{
+        var SEC_ID = "0001"
+        var SEC_VALUE = 1111
+    }
+}
+
+fun daum(){
+    println(Daum_Config.SEC_ID)
+    println(Daum_Config.SEC_VALUE)
 }
