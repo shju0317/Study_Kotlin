@@ -17,6 +17,10 @@ class MemoViewAdapter(var context:Context, var memoList : MutableList<MemoVO>) :
     //
     // private var memoList: MutableList<MemoVO>
 
+    fun setList(memoList : MutableList<MemoVO>){
+        this.memoList = memoList
+    }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MemoHolder {
 
         // layout/*.xml 파일을 읽어서 화면의 일부 컴포넌트(View)에 부착하여 사용하기 위한 조치

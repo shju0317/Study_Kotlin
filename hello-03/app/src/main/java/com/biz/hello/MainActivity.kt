@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.view.inputmethod.EditorInfo
+import android.widget.Adapter
 import android.widget.Button
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
@@ -30,6 +31,7 @@ class MainActivity : AppCompatActivity() {
     private lateinit var btnSave : Button
 
     private lateinit var memoViewModel: MemoViewModel
+    private lateinit var memoAdapter: MemoViewAdapter
 
     /*
     onCreate() method를 override하여 사용
@@ -75,11 +77,21 @@ class MainActivity : AppCompatActivity() {
             Toast.makeText(this, text, Toast.LENGTH_LONG).show() // 키보드 위에 그려짐
         }
 
+        val memoAdapter : MemoViewAdapter = MemoViewAdapter(this, memoList)
+
         //===================================================
         // recyclerView와 데이터를 바인딩하는 코드
         //===================================================
         // 내용물이 없는 mutableList 선언 및 초기화, null값이 되지 않도록 하기 위한 조치
         memoViewModel = ViewModelProvider(this).get(MemoViewModel::class.java)
+        memoViewModel.selectAll()?.observe(this,{
+            voList ->
+            if(voList != null) {
+                memoAdapter.setList(voList)
+            }
+            memoAdapter.notifyDataSetChanged()
+        })
+
         var memoList : MutableList<MemoVO> = memoViewModel.selectAll()?observe(this,{voList->if()})//mutableListOf<MemoVO>()
 
         /*
@@ -98,7 +110,7 @@ class MainActivity : AppCompatActivity() {
         }
         */
 
-        val memoAdapter : MemoViewAdapter = MemoViewAdapter(this, memoList)
+
         val rView : RecyclerView = findViewById(R.id.data_list_view)
         rView.adapter = memoAdapter
 
