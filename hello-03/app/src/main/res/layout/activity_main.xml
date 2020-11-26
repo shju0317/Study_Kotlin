@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/app_bar_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:theme="@style/Theme.Hello03"
+        app:layout_constraintTop_toTopOf="parent">
+    </com.google.android.material.appbar.AppBarLayout>
+
+        <!-- LinearLayout -->
+        <!-- 안드로에드에서 가장 많이 사용하는 간단한 컴포넌트 -->
+        <!-- 포함된 컴포넌트의 width 또는 height를 0dp로 설정하고
+            포함된 컴포넌트의 weight를 비율로 설정하면 일정 비율을 갖는
+            layout을 만들 수 있다.
+         -->
+        <LinearLayout
+            android:id="@+id/input_box"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="horizontal"
+            app:layout_constraintTop_toBottomOf="@id/app_bar_layout"
+            >
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_weight="4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/txt_memo"
+                    android:hint="메모를 입력한 후 저장버튼 클릭"
+                    android:imeOptions="actionSend"
+                    android:inputType="textEmailAddress"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"/>
+            </com.google.android.material.textfield.TextInputLayout>
+            <Button
+                android:id="@+id/btn_save"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:textSize="20sp"
+                android:text="저장"
+                android:layout_margin="5px"
+                android:padding="5px"
+                android:layout_height="match_parent"/>
+        </LinearLayout>
+        <!-- 글꼴의 크기단위 : dp, sp -->
+        <!-- sp : 화면의 사이즈에 따라 text의 크기가 달라짐 -->
+        <!-- dp : 동이리한 비율로 text의 크기를 지정-->
+        <!-- 최근 sp를 적용한 App을 많이 만드는 추세 -->
+
+        <!-- RecyclerView -->
+        <!-- : infinity scroll -->
+
+    <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"
+            app:popupTheme="@style/Theme.Hello03" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/data_list_view"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/input_box"
+        app:layout_constraintVertical_bias="1.0"
+        tools:layout_editor_absoluteX="-110dp" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
